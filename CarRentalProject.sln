@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entiti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{5D920290-73EC-49CD-99E3-CC2BC1315FCB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{D3CEDDED-4E75-4F6F-86B0-6E3CF1E7050C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{5D920290-73EC-49CD-99E3-CC2BC1315FCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D920290-73EC-49CD-99E3-CC2BC1315FCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D920290-73EC-49CD-99E3-CC2BC1315FCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3CEDDED-4E75-4F6F-86B0-6E3CF1E7050C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3CEDDED-4E75-4F6F-86B0-6E3CF1E7050C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3CEDDED-4E75-4F6F-86B0-6E3CF1E7050C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3CEDDED-4E75-4F6F-86B0-6E3CF1E7050C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
