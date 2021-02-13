@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Result;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -17,53 +19,52 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        public List<CarDetailDto> GetCarDetails()
+        public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
             //if etc.
-            return _carDal.GetCarDetails();
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
         }
 
-        public void Add(Car car)
+        public IResult Add(Car car)
         {
-            if (car.DailyPrice > 0)
+            if (car.DailyPrice < 0)
             {
-                _carDal.Add(car);
-                Console.WriteLine("Car added.");
+                return new ErrorResult(Messages.DailyPriceNoZeroOrLess);
             }
-            else
-            {
-                Console.WriteLine("You cannot enter 0 or less for DailyPrice. Please retry.");
-            }
+            _carDal.Add(car);
+            return new SuccessResult(Messages.CarAdded);
         }
 
-        public void Delete(Car car)
+        public IResult Delete(Car car)
         {
             _carDal.Delete(car);
-            Console.WriteLine("Car deleted.");
+            return new SuccessResult(Messages.CarDeleted);
 
         }
 
-        public void Update(Car car)
+        public IResult Update(Car car)
         {
-            if (car.DailyPrice > 0)
+            if (car.DailyPrice < 0)
             {
-                _carDal.Update(car);
-                Console.WriteLine("Car updated.");
+                return new ErrorResult(Messages.DailyPriceNoZeroOrLess);
             }
-            else
+            _carDal.Update(car);
+            return new SuccessResult(Messages.CarUpdated);
+        }
+
+        public IDataResult<Car> GetById(int id)
+        {
+            return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == id));
+            
+        }
+
+        public IDataResult<List<Car>> GetAll()
+        {
+            if (DateTime.Now.Hour == 22)
             {
-                Console.WriteLine("You cannot enter 0 or less for DailyPrice. Please retry.");
+                return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
             }
-        }
-
-        public Car GetById(int id)
-        {
-            return _carDal.Get(c => c.CarId == id);
-        }
-
-        public List<Car> GetAll()
-        {
-            return _carDal.GetAll();
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll());
         }
     }
 }
