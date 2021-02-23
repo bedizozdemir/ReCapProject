@@ -1,42 +1,50 @@
 ﻿CREATE TABLE Cars(
-	CarID INT NOT NULL PRIMARY KEY,
-	BrandID INT NOT NULL,
-	ColorID INT NOT NULL,
+	CarId INT NOT NULL PRIMARY KEY,
+	BrandId INT NOT NULL,
+	ColorId INT NOT NULL,
 	ModelYear INT NOT NULL,
 	DailyPrice DECIMAL NOT NULL,
 	Descriptions NVARCHAR (50) NOT NULL,
-	FOREIGN KEY (ColorID) REFERENCES Colors(ColorID),
-	FOREIGN KEY (BrandID) REFERENCES Brands(BrandID)
+	FOREIGN KEY (ColorId) REFERENCES Colors(ColorId),
+	FOREIGN KEY (BrandId) REFERENCES Brands(BrandId)
 )
 
 CREATE TABLE Colors(
-	ColorID INT NOT NULL PRIMARY KEY,
-	ColorName NVARCHAR (25)
+	ColorId INT NOT NULL PRIMARY KEY,
+	ColorName NVARCHAR (50)
 )
 
 CREATE TABLE Brands(
-	BrandID INT NOT NULL PRIMARY KEY,
-	BrandName NVARCHAR (25) NOT NULL
+	BrandId INT NOT NULL PRIMARY KEY,
+	BrandName NVARCHAR (50) NOT NULL
 )
 
-INSERT INTO Cars(BrandID,ColorID,ModelYear,DailyPrice,Descriptions)
+INSERT INTO Cars(BrandId,ColorId,ModelYear,DailyPrice,Descriptions)
 VALUES
-	('1','1','2019','1700','3 günlük kiralık!'),
-	('3','1','2017','750','3 günlük kiralık!'),
-	('2','2','2018','800','3 günlük kiralık!'),
-	('1','3','2018','1500','3 günlük kiralık!'),
-	('2','2','2019','195','Günlük kiralık!'),
-	('3','2','2018','185','Günlük kiralık!');
+	('1','1','2019','1700','Price for 3 days!'),
+	('3','1','2017','750','Price for 3 days!'),
+	('2','2','2018','800','Price for 3 days!'),
+	('1','3','2018','1500','Price for 3 days!'),
+	('2','2','2019','195','Price for a day!'),
+	('3','5','2018','185','Price for a day!'),
+	('4','3','2014','135','Price for a day!'),
+	('5','1','2020','200','Price for a day!'),
+	('4','4','2019','600','Price for 3 days!');
+
 
 INSERT INTO Colors(ColorName)
 VALUES
 	('Siyah'),
 	('Beyaz'),
-	('Lacivert');
+	('Lacivert'),
+	('Sarı'),
+	('Kırmızı');
 
 
 INSERT INTO Brands(BrandName)
 VALUES
 	('Audi'),
 	('Opel'),
-	('Volkswagen');
+	('Volkswagen'),
+	('Renault'),
+	('Ford');
