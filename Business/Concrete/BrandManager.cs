@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Result;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -26,13 +27,7 @@ namespace Business.Concrete
 
         public IResult Add(Brand brand)
         {
-            var context = new ValidationContext<Brand>(brand);
-            BrandValidator brandValidator = new BrandValidator();
-            var result = brandValidator.Validate(context);
-            if (!result.IsValid)
-            {
-                throw new ValidationException(result.Errors);
-            }
+            ValidationTool.Validate(new BrandValidator(), brand);
             _brandDal.Add(brand);
             return new SuccessResult(Messages.BrandAdded);
 
@@ -46,13 +41,7 @@ namespace Business.Concrete
 
         public IResult Update(Brand brand)
         {
-            var context = new ValidationContext<Brand>(brand);
-            BrandValidator brandValidator = new BrandValidator();
-            var result = brandValidator.Validate(context);
-            if (!result.IsValid)
-            {
-                throw new ValidationException(result.Errors);
-            }
+            ValidationTool.Validate(new BrandValidator(), brand);
             _brandDal.Update(brand);
             return new SuccessResult(Messages.BrandUpdated);
         }
