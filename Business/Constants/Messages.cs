@@ -39,9 +39,12 @@ namespace Business.Constants
         public static string CustomerDeleted = "Customer deleted!";
         public static string CustomerUpdated = "Customer updated!";
         public static string CustomerList = "Customers are listed.";
+        //CarImages
+        internal static string CarImageLimitExceeded= "You cannot add more than 5 images.";
         //DailyPrice
         public static string DailyPriceNoZeroOrLess = "You cannot enter 0 or less for DailyPrice. Please retry.";
         //Maintenance
         public static string MaintenanceTime = "Maintenance has begun.";
+        
     }
 }

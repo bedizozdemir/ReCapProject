@@ -24,7 +24,7 @@ namespace ConsoleUI
             UserTest();
             Console.WriteLine("-----------------------------------");
             CustomerAdd();
-
+            CarImageManager carImageManager = new CarImageManager(new EfCarImageDal());
 
         }
 
