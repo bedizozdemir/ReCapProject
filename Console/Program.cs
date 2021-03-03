@@ -2,6 +2,7 @@
 using Business.Constants;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
+using Core.Entities.Concrete;
 using Entities.Concrete;
 using System;
 
@@ -49,7 +50,7 @@ namespace ConsoleUI
             {
                 foreach (var user in result.Data)
                 {
-                    Console.WriteLine(user.UserId+" / "+user.FirstName + " " + user.LastName+" / "+user.Email);
+                    Console.WriteLine(user.UserId + " / " + user.FirstName + " " + user.LastName + " / " + user.Email);
                 }
             }
             else

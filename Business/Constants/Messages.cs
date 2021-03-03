@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Entities.Concrete;
+using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Business.Constants
@@ -45,6 +47,13 @@ namespace Business.Constants
         public static string DailyPriceNoZeroOrLess = "You cannot enter 0 or less for DailyPrice. Please retry.";
         //Maintenance
         public static string MaintenanceTime = "Maintenance has begun.";
-        
+        //Authorization and Registeration
+        internal static string AuthorizationDenied = "Authorization has been denied.";
+        internal static string UserRegistered = "User has been registered successfully.";
+        internal static string SuccessfullyLogin = "Successful login.";
+        internal static string IncorrectPassword = "Your password is incorrect.";
+        internal static string UserAlreadyRegistered = "This user has already registered.";
+        internal static string UserNotFound="This user did not found.";
+        internal static string TokenCreated="Token created.";
     }
 }
