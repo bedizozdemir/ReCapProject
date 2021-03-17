@@ -55,6 +55,13 @@ namespace Business.Concrete
             return new SuccessDataResult<User>(userToCheck, Messages.SuccessfullyLogin);
         }
 
+        public IDataResult<AccessToken> CreateAccessToken(User user)
+        {
+            var claims = _userService.GetClaims(user).Data;
+            var accessToken = _tokenHelper.CreateToken(user, claims);
+            return new SuccessDataResult<AccessToken>(accessToken, Messages.TokenCreated);
+        }
+
         public IResult UserExists(string email)
         {
             if (_userService.GetByMail(email) != null)
@@ -62,13 +69,6 @@ namespace Business.Concrete
                 return new ErrorResult(Messages.UserAlreadyRegistered);
             }
             return new SuccessResult();
-        }
-
-        public IDataResult<AccessToken> CreateAccessToken(User user)
-        {
-            var claims = _userService.GetClaims(user).Data;
-            var accessToken = _tokenHelper.CreateToken(user, claims);
-            return new SuccessDataResult<AccessToken>(accessToken, Messages.TokenCreated);
-        }
+        } 
     }
 }
