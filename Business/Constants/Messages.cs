@@ -55,5 +55,10 @@ namespace Business.Constants
         internal static string UserAlreadyRegistered = "This user has already registered.";
         internal static string UserNotFound="This user did not found.";
         internal static string TokenCreated="Token created.";
+        //Rental and Payments
+        public static string Added = " has been added.";
+        public static string Updated = " has been updated.";
+        public static string Deleted = " has been deleted.";
+        public static string NotExist = "There is no such a ";
     }
 }

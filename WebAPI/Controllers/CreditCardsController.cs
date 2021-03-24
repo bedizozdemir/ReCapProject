@@ -5,25 +5,58 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RentalsController : ControllerBase
+    public class CreditCardsController : ControllerBase
     {
-        IRentalService _rentalService;
-        public RentalsController(IRentalService rentalService)
+        ICreditCardService _creditCardService;
+
+        public CreditCardsController(ICreditCardService creditCardService)
         {
-            _rentalService = rentalService;
+            _creditCardService = creditCardService;
         }
 
-        [HttpGet("getbyid")]
-        public IActionResult GetById(int id)
+        [HttpPost("add")]
+        public IActionResult Add(CreditCard card)
         {
-            var result = _rentalService.GetById(id);
+            var result = _creditCardService.Add(card);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpPost("update")]
+        public IActionResult Update([FromBody] CreditCard card)
+        {
+            var result = _creditCardService.Update(card);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpPost("delete")]
+        public IActionResult Delete([FromBody] CreditCard card)
+        {
+            var result = _creditCardService.Delete(card);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("get")]
+        public IActionResult Get([FromBody] CreditCard card)
+        {
+            var result = _creditCardService.Get(card);
             if (result.Success)
             {
                 return Ok(result);
@@ -34,7 +67,7 @@ namespace WebAPI.Controllers
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _rentalService.GetAll();
+            var result = _creditCardService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -42,50 +75,16 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("add")]
-        public IActionResult Add(Rental rental, DateTime returndate)
+        [HttpGet("getbyid")]
+
+        public IActionResult GetById(int cardId)
         {
-            var result = _rentalService.Add(rental, returndate);
+            var result = _creditCardService.GetById(cardId);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
-        }
-
-        [HttpPost("delete")]
-        public IActionResult Delete(Rental rental)
-        {
-            var result = _rentalService.Delete(rental);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-
-        [HttpPost("update")]
-        public IActionResult Update(Rental rental)
-        {
-            var result = _rentalService.Update(rental);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-
-        [HttpGet("getrentaldetails")]
-        public IActionResult GetRentalDetails()
-        {
-            Thread.Sleep(5000);
-            var result = _rentalService.GetRentalDetails();
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-
         }
     }
 }
